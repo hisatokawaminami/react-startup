@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-function Header(props){
+function Header(){
   var style = {
-    backgroundColor: "red",
-    fontFamily: "monospace"
-  }
+    backgroundColor: '#fff',
+    fontFamily: 'monospace'
+  };
   return (
     <h1 style={style}>Help Queue</h1>
   );
