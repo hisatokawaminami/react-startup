@@ -7,19 +7,19 @@ import NewTicketControl from './NewTicketControl';
 import Error404 from './Error404';
 
 class App extends React.Component {
-constructor(props) {
-  super(props);
-  this.state = {
-    masterTicketList: []
-  };
-  this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      masterTicketList: []
+    };
+    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
 
-}
-handleAddingNewTicketToList(newTicket){
-   var newMasterTicketList = this.state.masterTicketList.slice();
-   newMasterTicketList.push(newTicket);
-   this.setState({masterTicketList: newMasterTicketList});
- };
+  }
+  handleAddingNewTicketToList(newTicket){
+    var newMasterTicketList = this.state.masterTicketList.slice();
+    newMasterTicketList.push(newTicket);
+    this.setState({masterTicketList: newMasterTicketList});
+  }
 
 
 
