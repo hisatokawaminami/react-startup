@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 
 function NewTicketForm(props){
   let _names = null;
@@ -8,10 +9,10 @@ function NewTicketForm(props){
 
   function handleNewTicketFormSubmission(event) {
     event.preventDefault();
-    console.log(_names.value);
-    console.log(_location.value);
-    console.log(_issue.value);
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value});
+    // console.log(_names.value);
+    // console.log(_location.value);
+    // console.log(_issue.value);
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
     _names.value = '';
     _location.value = '';
     _issue.value = '';
