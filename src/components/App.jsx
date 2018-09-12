@@ -4,18 +4,20 @@ import Header from './Header';
 import TicketList from './TicketList';
 import NewTicketControl from './NewTicketControl';
 import Error404 from './Error404';
-import Moment from 'moment';
+// import Moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Admin from './Admin';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterTicketList: []
+      masterTicketList: [],
+      selectedTicket: null
     };
     this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
 
+    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   }
 
   componentDidMount() {
@@ -29,25 +31,25 @@ class App extends React.Component {
     clearInterval(this.waitTimeUpdateTimer);
   }
   componentWillMount() {
-      console.log('componentWillMount');
-    }
+    console.log('componentWillMount');
+  }
 
-    componentWillReceiveProps() {
-      console.log('componentWillReceiveProps');
-    }
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps');
+  }
 
-    shouldComponentUpdate() {
-      console.log('shouldComponentUpdate');
-      return true;
-    }
+  shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
 
-    componentWillUpdate() {
-      console.log('componentWillUpdate');
-    }
+  componentWillUpdate() {
+    console.log('componentWillUpdate');
+  }
 
-    componentDidUpdate() {
-      console.log('componentDidUpdateeeeeeeee');
-    }
+  componentDidUpdate() {
+    console.log('componentDidUpdateeeeeeeee');
+  }
 
   updateTicketElaspedWaitTime(){
     console.log('check');
@@ -65,6 +67,10 @@ class App extends React.Component {
     this.setState({masterTicketList: newMasterTicketList});
   }
 
+  handleChangingSelectedTicket(ticket){
+    this.setState({selectedTicket: ticket});
+    alert('The selected ticket is now: ' + this.state.selectedTicket.names);
+  }
 
 
   render(){
@@ -74,6 +80,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList } />} />
           <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname} onTicketSelection={this.handleChangingSelectedTicket} slectedTicket={this.state.selectedTicket}/>} />
           <Route component={Error404} />
         </Switch>
       </div>
